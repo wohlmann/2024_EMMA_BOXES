@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css"> #YOURID { width: 90%; height: 90%; } </style>
+	</head>
+	<body>
+		<div id="YOURID"></div>
+		<script src="openseadragon/openseadragon.min.js"></script>
+		<script src="openseadragon/openseadragon-scalebar.js"></script>
+		<script>
+		var viewer = OpenSeadragon({
+			id:	'YOURID',
+			prefixUrl:	'openseadragon/images/',
+			tileSources:   'dzi/YOURID.dzi'
+		});
+		viewer.scalebar({
+			pixelsPerMeter: YOURVALUE,
+			xOffset: 20,
+			yOffset: 10,
+			
+		});
+		</script>
+	</body>
