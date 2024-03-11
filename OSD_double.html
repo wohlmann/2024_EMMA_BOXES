@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            background-color: #000000;
+        }
+
+        .logo {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+		.viewers {
+			display: flex;
+			justify-content: center; /* Align items to the center for equal spacing */
+			width: 100%;
+			height: 80%;
+			background-color: #000000;
+			padding-top: 20px;
+			box-sizing: border-box;
+		}
+
+		.viewer-container {
+			display: flex;
+			flex-direction: column;
+			width: calc(55% - 10px); /* Subtract desired spacing from the width */
+			height: 100%;
+			align-items: center;
+			padding: 0 5px; /* Half of the total spacing between viewers on each side */
+			box-sizing: border-box;
+		}
+
+        .viewer {
+            width: 100%; /* Viewer should take up the full width of the .viewer-container */
+            height: calc(100% - 40px); /* Reserve 40px for the header */
+            margin-top: 10px;
+            border: 1px solid #D3D3D3;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            color: #D3D3D3;
+            font-family: Arial, sans-serif;
+			font-size: 110%;
+            text-align: center;
+            margin: 0;
+            padding: 1px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="logo">
+            <a href="https://www.mn.uio.no/ibv/english/research/about/infrastructure/facilities/life-science/imaging/em/index.html" target="_blank">
+                <img src="Assets/Logo/logosmall.png" alt="logo" />
+            </a>
+        </div>
+        <div class="viewers">
+            <div class="viewer-container">
+                <h2>Viewer Left</h2>
+                <div class="viewer" id="viewer1"></div>
+            </div>
+            <div class="viewer-container">
+                <h2>Viewer Right</h2>
+                <div class="viewer" id="viewer2"></div>
+            </div>
+        </div>
+    </div>
+    <script src="openseadragon/openseadragon.js"></script>
+    <script src="openseadragon/openseadragon-scalebar.js"></script>
+    <script>
+        var viewer1 = OpenSeadragon({
+            id:            'viewer1',
+            prefixUrl:     'openseadragon/images/',
+            tileSources: [{
+                type:       "zoomifytileservice",
+                width:      102588,
+                height:     19708,
+                tilesUrl:   "2018008_029_2018008B_G4_ser2/",
+                tileSize: 256,
+                fileFormat: 'jpg'	
+            }],
+            showNavigator: true,
+            wrapHorizontal: false,
+            wrapVertical: false,
+            zoomPerScroll: 1.2,
+            minZoomImageRatio: 0.5,
+            showNavigationControl: false
+        });
+        var viewer2 = OpenSeadragon({
+            id:            'viewer2',
+            prefixUrl:     'openseadragon/images/',
+            tileSources: [{
+                type:       "zoomifytileservice",
+                width:      102588,
+                height:     19708,
+                tilesUrl:   "2018008_029_2018008B_G4_ser2B/",
+                tileSize: 256,
+                fileFormat: 'jpg'	
+            }],
+            showNavigator: true,
+            wrapHorizontal: false,
+            wrapVertical: false,
+            zoomPerScroll: 1.2,
+            minZoomImageRatio: 0.5,
+            showNavigationControl: false
+        });
+
+        viewer1.scalebar({
+            type: OpenSeadragon.ScalebarType.MICROSCOPY,
+            pixelsPerMeter: 253560000,
+            minWidth: "200px",
+            location: OpenSeadragon.ScalebarLocation.BOTTOM_RIGHT,
+            xOffset: 20,
+            yOffset: 10,
+            stayInsideImage: true,
+            color: "rgb(0, 0, 0)",
+            fontColor: "rgb(0, 0, 0)",
+            backgroundColor: "rgba(200, 200, 200, 0.0)",
+            fontSize: "large",
+            barThickness: 4
+        });
+        viewer2.scalebar({
+            type: OpenSeadragon.ScalebarType.MICROSCOPY,
+            pixelsPerMeter: 253560000,
+            minWidth: "200px",
+            location: OpenSeadragon.ScalebarLocation.BOTTOM_RIGHT,
+            xOffset: 20,
+            yOffset: 10,
+            stayInsideImage: true,
+            color: "rgb(0, 0, 0)",
+            fontColor: "rgb(0, 0, 0)",
+            backgroundColor: "rgba(200, 200, 200, 0.0)",
+            fontSize: "large",
+            barThickness: 4
+        });
+    </script>
+</body>
+</html>
